@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติการติดต่อ - BudgetBuddy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BudgetBuddy</h1>
+            <p class="tagline">เพื่อนคู่คิดเรื่องเงินของคุณ</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">หน้าหลัก</a></li>
+                    <li><a href="saving.html">ออมเงิน</a></li>
+                    <li><a href="planning.html">วางแผนการเงิน</a></li>
+                    <li><a href="knowledge.html">ความรู้ด้านการเงิน</a></li>
+                    <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                    <li><a href="contact.html">ติดต่อเรา</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="section">
+                <h2>ประวัติการติดต่อ</h2>
+                <p>ดูประวัติข้อความที่คุณส่งถึงเรา</p>
+                <a href="contact.html" class="back-button">← กลับไปหน้าติดต่อ</a>
+            </div>
+
+            <div class="form-section">
+                <h2>รายการข้อความ</h2>
+                <div id="contactHistoryList" class="list-container">
+                    <div class="list-item history-empty">
+                        <p>ยังไม่มีประวัติการติดต่อ</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="back-to-top" id="backToTop">↑</div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 BudgetBuddy - แอพพลิเคชั่นสอนการเงินสำหรับทุกคน</p>
+                <nav class="footer-nav">
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อเรา</a>
+                    <a href="https://www.facebook.com/budgetbuddyth" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://line.me/ti/p/@budgetbuddy" target="_blank">
+                        <i class="fab fa-line"></i>
+                    </a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let contactHistory = JSON.parse(localStorage.getItem('budgetBuddyContactHistory') || '[]');
+            
+            function renderContactHistory() {
+                const historyList = document.getElementById('contactHistoryList');
+                historyList.innerHTML = contactHistory.length ? '' : '<div class="list-item history-empty"><p>ยังไม่มีประวัติการติดต่อ</p></div>';
+
+                contactHistory.forEach(entry => {
+                    const item = document.createElement('div');
+                    item.className = 'list-item';
+                    item.innerHTML = `
+                        <div class="list-item-details">
+                            <h3>${entry.subject}</h3>
+                            <p>ชื่อ: ${entry.name}</p>
+                            <p>อีเมล: ${entry.email}</p>
+                            <p>ข้อความ: ${entry.message}</p>
+                            <p>วันที่: ${new Date(entry.date).toLocaleDateString('th-TH')}</p>
+                        </div>
+                        <div class="list-item-actions">
+                            <button class="btn-secondary" onclick="deleteContact(${entry.id})">ลบ</button>
+                        </div>
+                    `;
+                    historyList.appendChild(item);
+                });
+            }
+
+            window.deleteContact = function(id) {
+                if (confirm('แน่ใจหรือไม่ว่าจะลบข้อความนี้?')) {
+                    contactHistory = contactHistory.filter(entry => entry.id !== id);
+                    localStorage.setItem('budgetBuddyContactHistory', JSON.stringify(contactHistory));
+                    renderContactHistory();
+                    showToast('ลบข้อความสำเร็จ!');
+                }
+            };
+
+            renderContactHistory();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา - BudgetBuddy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BudgetBuddy</h1>
+            <p class="tagline">เพื่อนคู่คิดเรื่องเงินของคุณ</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">หน้าหลัก</a></li>
+                    <li><a href="saving.html">ออมเงิน</a></li>
+                    <li><a href="planning.html">วางแผนการเงิน</a></li>
+                    <li><a href="knowledge.html">ความรู้ด้านการเงิน</a></li>
+                    <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                    <li><a href="contact.html" class="active">ติดต่อเรา</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="section">
+                <h2>ติดต่อเรา</h2>
+                <p>มีคำถาม คำแนะนำ หรือข้อเสนอแนะ? เราพร้อมรับฟัง!</p>
+                <a href="index.html" class="back-button">← กลับไปหน้าหลัก</a>
+                <a href="contact_history.html" class="btn-secondary" style="margin-left: 10px;">ดูประวัติการติดต่อ</a>
+            </div>
+
+            <div class="form-section">
+                <h2>ส่งข้อความถึงเรา</h2>
+                <form id="contactForm">
+                    <div class="input-group">
+                        <label for="name">ชื่อ:</label>
+                        <input type="text" id="name" placeholder="ชื่อของคุณ" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">อีเมล:</label>
+                        <input type="email" id="email" placeholder="example@email.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="subject">หัวข้อ:</label>
+                        <select id="subject" required>
+                            <option value="">-- เลือกหัวข้อ --</option>
+                            <option value="สอบถามข้อมูล">สอบถามข้อมูล</option>
+                            <option value="แจ้งปัญหาการใช้งาน">แจ้งปัญหาการใช้งาน</option>
+                            <option value="ข้อเสนอแนะ">ข้อเสนอแนะ</option>
+                            <option value="อื่นๆ">อื่นๆ</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="message">ข้อความ:</label>
+                        <textarea id="message" rows="5" placeholder="พิมพ์ข้อความของคุณที่นี่..." required></textarea>
+                    </div>
+                    <button type="submit" id="sendMessageBtn">ส่งข้อความ</button>
+                </form>
+                <div id="formResponse" class="form-response" style="display: none;"></div>
+            </div>
+
+            <div class="section contact-info-section">
+                <h2>ช่องทางการติดต่ออื่นๆ</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="far fa-envelope"></i>
+                        </div>
+                        <h3>อีเมล</h3>
+                        <p><a href="mailto:support@budgetbuddy.com">support@budgetbuddy.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <h3>Facebook</h3>
+                        <p><a href="https://www.facebook.com/budgetbuddyth" target="_blank">Facebook.com/budgetbuddyth</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-line"></i>
+                        </div>
+                        <h3>Line Official</h3>
+                        <p><a href="https://line.me/ti/p/@budgetbuddy" target="_blank">@budgetbuddy</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section support-hours">
+                <h2>เวลาให้บริการ</h2>
+                <div class="hours-grid">
+                    <div class="hours-item">
+                        <h3>วันจันทร์ - วันศุกร์</h3>
+                        <p>9:00 - 18:00 น.</p>
+                    </div>
+                    <div class="hours-item">
+                        <h3>วันเสาร์</h3>
+                        <p>10:00 - 16:00 น.</p>
+                    </div>
+                    <div class="hours-item">
+                        <h3>วันอาทิตย์ และวันหยุดนักขัตฤกษ์</h3>
+                        <p>ไม่เปิดให้บริการ</p>
+                    </div>
+                </div>
+                <p class="note">* เราจะพยายามตอบกลับทุกข้อความภายใน 24 ชั่วโมงในวันทำการ</p>
+            </div>
+        </main>
+
+        <div class="back-to-top" id="backToTop">↑</div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 BudgetBuddy - แอพพลิเคชั่นสอนการเงินสำหรับทุกคน</p>
+                <nav class="footer-nav">
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อเรา</a>
+                    <a href="https://www.facebook.com/budgetbuddyth" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://line.me/ti/p/@budgetbuddy" target="_blank">
+                        <i class="fab fa-line"></i>
+                    </a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const formResponse = document.getElementById('formResponse');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value.trim();
+
+                    if (!name || !email || !subject || !message) {
+                        showToast('กรุณากรอกข้อมูลให้ครบทุกช่อง', 'error');
+                        return;
+                    }
+
+                    const sendButton = document.getElementById('sendMessageBtn');
+                    sendButton.textContent = 'กำลังส่ง...';
+                    sendButton.disabled = true;
+                    sendButton.classList.add('loading');
+
+                    setTimeout(function() {
+                        const contactHistory = JSON.parse(localStorage.getItem('budgetBuddyContactHistory') || '[]');
+                        contactHistory.push({
+                            id: Date.now(),
+                            name: name,
+                            email: email,
+                            subject: subject,
+                            message: message,
+                            date: new Date().toISOString()
+                        });
+                        localStorage.setItem('budgetBuddyContactHistory', JSON.stringify(contactHistory));
+
+                        contactForm.reset();
+                        formResponse.textContent = 'ส่งข้อความสำเร็จ! เราจะติดต่อกลับโดยเร็วที่สุด';
+                        formResponse.className = 'form-response success';
+                        formResponse.style.display = 'block';
+                        showToast('ส่งข้อความสำเร็จ!');
+
+                        sendButton.textContent = 'ส่งข้อความ';
+                        sendButton.disabled = false;
+                        sendButton.classList.remove('loading');
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

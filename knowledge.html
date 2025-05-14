@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ความรู้ด้านการเงิน - BudgetBuddy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BudgetBuddy</h1>
+            <p class="tagline">เพื่อนคู่คิดเรื่องเงินของคุณ</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">หน้าหลัก</a></li>
+                    <li><a href="saving.html">ออมเงิน</a></li>
+                    <li><a href="planning.html">วางแผนการเงิน</a></li>
+                    <li><a href="knowledge.html" class="active">ความรู้ด้านการเงิน</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="section">
+                <h2>ความรู้ด้านการเงิน</h2>
+                <p>เรียนรู้เคล็ดลับและเทคนิคการจัดการเงินจากบทความของเรา</p>
+                <a href="index.html" class="back-button">← กลับไปหน้าหลัก</a>
+            </div>
+
+            <div class="form-section">
+                <h2>ค้นหาบทความ</h2>
+                <div class="input-group">
+                    <label for="searchArticles">ค้นหา:</label>
+                    <input type="text" id="searchArticles" placeholder="เช่น การออม, การลงทุน">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>บทความทั้งหมด</h2>
+                <div id="articleGrid" class="article-grid"></div>
+            </div>
+        </main>
+
+        <div class="back-to-top" id="backToTop">↑</div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 BudgetBuddy - แอพพลิเคชั่นสอนการเงินสำหรับทุกคน</p>
+                <nav class="footer-nav">
+                    <a href="about.html">เกี่ยวกับเรา</a>
+                    <a href="contact.html">ติดต่อเรา</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ข้อมูลบทความ (จำลอง)
+            const articles = [
+                {
+                    id: 1,
+                    title: 'วิธีออมเงินให้ได้ผล',
+                    excerpt: 'เรียนรู้เทคนิคการออมเงินที่ใช้ได้จริงในชีวิตประจำวัน',
+                    category: 'การออม',
+                    date: '2025-05-10',
+                    image: 'savings.jpg'
+                },
+                {
+                    id: 2,
+                    title: 'การวางแผนงบประมาณ 50/30/20',
+                    excerpt: 'รู้จักกฎ 50/30/20 เพื่อจัดการรายรับของคุณอย่างชาญฉลาด',
+                    category: 'การวางแผน',
+                    date: '2025-04-15',
+                    image: 'planning.jpg'
+                },
+                {
+                    id: 3,
+                    title: 'พื้นฐานการลงทุนสำหรับมือใหม่',
+                    excerpt: 'เริ่มต้นลงทุนอย่างไรให้ปลอดภัยและได้ผลตอบแทนดี',
+                    category: 'การลงทุน',
+                    date: '2025-03-20',
+                    image: 'investment.jpg'
+                }
+            ];
+
+            // แสดงบทความ
+            function renderArticles(filter = '') {
+                const articleGrid = document.getElementById('articleGrid');
+                articleGrid.innerHTML = '';
+
+                const filteredArticles = articles.filter(article =>
+                    article.title.toLowerCase().includes(filter.toLowerCase()) ||
+                    article.excerpt.toLowerCase().includes(filter.toLowerCase()) ||
+                    article.category.toLowerCase().includes(filter.toLowerCase())
+                );
+
+                if (filteredArticles.length === 0) {
+                    articleGrid.innerHTML = '<p>ไม่พบบทความที่ตรงกับการค้นหา</p>';
+                    return;
+                }
+
+                filteredArticles.forEach(article => {
+                    const card = document.createElement('div');
+                    card.className = 'article-card';
+                    card.innerHTML = `
+                        <div class="article-image" style="background-image: url(${article.image || 'placeholder.jpg'})"></div>
+                        <div class="article-content">
+                            <h3 class="article-title">${article.title}</h3>
+                            <p class="article-excerpt">${article.excerpt}</p>
+                            <div class="article-meta">
+                                <span>วันที่: ${new Date(article.date).toLocaleDateString('th-TH')}</span>
+                                <span>หมวดหมู่: ${article.category}</span>
+                            </div>
+                        </div>
+                    `;
+                    articleGrid.appendChild(card);
+                });
+            }
+
+            // ค้นหาบทความ
+            document.getElementById('searchArticles').addEventListener('input', (e) => {
+                renderArticles(e.target.value);
+            });
+
+            // Back to Top
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                backToTop.classList.toggle('visible', window.pageYOffset > 300);
+            });
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // โหลดบทความเริ่มต้น
+            renderArticles();
+        });
+    </script>
+</body>
+</html>
